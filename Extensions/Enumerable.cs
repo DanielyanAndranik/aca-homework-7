@@ -22,6 +22,14 @@ namespace Extensions
         /// <returns>returns the changed enumerable.</returns>
         public static IEnumerable<TResult> ExtensionSelect<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
         {
+            if(source == null)
+            {
+                throw new NullReferenceException("Source is null");
+            }
+            if(selector == null)
+            {
+                throw new NullReferenceException("Selector is null");
+            }
             return new SelectEnumerable<TSource, TResult>(source, selector);
         }
 
@@ -34,6 +42,14 @@ namespace Extensions
         /// <returns>Returns the filtred enumerable.</returns>
         public static IEnumerable<TSource> ExtensionWhere<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
         {
+            if (source == null)
+            {
+                throw new NullReferenceException("Source is null");
+            }
+            if (selector == null)
+            {
+                throw new NullReferenceException("Selector is null");
+            }
             return new WhereEnumerable<TSource>(source, predicate);
         }
 
@@ -47,6 +63,14 @@ namespace Extensions
         /// <returns>Returns an enumerable pf groups.</returns>
         public static IEnumerable<IGrouping<TKey, TSource>> ExtensionGroupBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
         {
+            if (source == null)
+            {
+                throw new NullReferenceException("Source is null");
+            }
+            if (selector == null)
+            {
+                throw new NullReferenceException("Selector is null");
+            }
             return new GroupedEnumerable<TKey, TSource>(source, keySelector);
         }
 
@@ -58,6 +82,10 @@ namespace Extensions
         /// <returns>Returns the list.</returns>
         public static List<TSource> ExtensionToList<TSource>(this IEnumerable<TSource> source)
         {
+            if (source == null)
+            {
+                throw new NullReferenceException("Source is null");
+            }
             List<TSource> list = new List<TSource>();
             foreach (var item in source)
             {
@@ -68,6 +96,14 @@ namespace Extensions
 
         public static IOrderedEnumerable<TSource> ExtensionOrderBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector, bool descending) where TKey : IComparable<TKey>
         {
+            if (source == null)
+            {
+                throw new NullReferenceException("Source is null");
+            }
+            if (selector == null)
+            {
+                throw new NullReferenceException("Selector is null");
+            }
             return new OrderedEnumerable<TSource, TKey>(source, keySelector, descending);
         }
 
@@ -81,6 +117,10 @@ namespace Extensions
         /// <returns>Returns the dictionary.</returns>
         public static Dictionary<TKey, TSource> ExtensionToDictionary<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
         {
+            if (source == null)
+            {
+                throw new NullReferenceException("Source is null");
+            }
             Dictionary<TKey, TSource> dictionary = new Dictionary<TKey, TSource>();
             foreach (var item in source)
             {
